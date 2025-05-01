@@ -1,4 +1,4 @@
-package co.com.bancolombia.web.controller;
+package co.com.bancolombia.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

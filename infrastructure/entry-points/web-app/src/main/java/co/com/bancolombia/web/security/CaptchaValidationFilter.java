@@ -1,4 +1,3 @@
-// src/main/java/co/com/bancolombia/web/security/CaptchaValidationFilter.java
 package co.com.bancolombia.web.security;
 
 import jakarta.servlet.FilterChain;
@@ -33,7 +32,7 @@ public class CaptchaValidationFilter extends OncePerRequestFilter {
             String captchaResponse = request.getParameter("g-recaptcha-response");
             if (captchaResponse == null || captchaResponse.isEmpty() || !verifyCaptcha(captchaResponse)) {
                 request.setAttribute("captchaError", true);
-                response.sendRedirect("/login?error"); // Redirect with error parameter
+                response.sendRedirect("/login?error");
                 return;
             }
         }

@@ -1,7 +1,5 @@
 pluginManagement {
     repositories {
-        //mavenLocal()
-        //maven { url = '...' }
         gradlePluginPortal()
     }
 }
@@ -11,12 +9,10 @@ rootProject.name = 'security_course'
 include ':app-service'
 include ':model'
 include ':usecase'
+include ':web-app'
+include ':jpa-repository'
 project(':app-service').projectDir = file('./applications/app-service')
 project(':model').projectDir = file('./domain/model')
 project(':usecase').projectDir = file('./domain/usecase')
-include ':web-app'
 project(':web-app').projectDir = file('./infrastructure/entry-points/web-app')
-include ':hash-util'
-project(':hash-util').projectDir = file('./infrastructure/helpers/hash-util')
-include ':jpa-repository'
 project(':jpa-repository').projectDir = file('./infrastructure/driven-adapters/jpa-repository')

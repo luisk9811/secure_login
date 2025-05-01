@@ -14,7 +14,7 @@ import org.springframework.security.core.AuthenticationException;
 public class CustomAuthenticationProvider extends DaoAuthenticationProvider {
 
     private final LoginAttemptService loginAttemptService;
-    private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class); // Logging
+    private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

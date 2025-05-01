@@ -1,19 +1,12 @@
 dependencies {
     implementation project(':usecase')
     implementation project(':model')
-    implementation project(':hash-util')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-undertow'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.security:spring-security-web'
     implementation 'org.springframework.security:spring-security-config'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.bouncycastle:bcprov-jdk15to18:1.80'
-}
-
-configurations{
-	implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
 }

@@ -1,4 +1,3 @@
-// src/main/java/co/com/bancolombia/web/config/SecurityConfig.java
 package co.com.bancolombia.web.config;
 
 import co.com.bancolombia.usecase.GetUserByUsernameUseCase;
