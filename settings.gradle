@@ -4,7 +4,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'security_course'
+rootProject.name = 'secure_login'
 
 include ':app-service'
 include ':model'
