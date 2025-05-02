@@ -1,6 +1,5 @@
 package co.com.bancolombia.web.security;
 
-import co.com.bancolombia.model.User;
 import co.com.bancolombia.usecase.GetUserByUsernameUseCase;
 import co.com.bancolombia.web.security.model.UserPrincipal;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +18,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         try {
-            User user = getUserByUsernameUseCase.getByUsername(username);
-            return new UserPrincipal(user);
+            return new UserPrincipal(
+                    getUserByUsernameUseCase.getByUsername(username)
+            );
         } catch (RuntimeException e) {
             throw new UsernameNotFoundException("Usuario no encontrado: " + username, e);
         }

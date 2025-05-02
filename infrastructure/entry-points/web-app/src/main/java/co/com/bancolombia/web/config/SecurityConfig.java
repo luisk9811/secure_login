@@ -6,6 +6,7 @@ import co.com.bancolombia.web.security.CustomAuthenticationProvider;
 import co.com.bancolombia.web.security.UserDetailsServiceImpl;
 import co.com.bancolombia.web.security.service.LoginAttemptService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,14 +21,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    @Value("${reCAPTCHA.url}")
+    private String recaptchaUrl;
+    @Value("${reCAPTCHA.secret-key}")
+    private String recaptchaSecretKey;
+
     private static final int ARGON2_MEMORY_MIB = 19 * 1024;
     private static final int ARGON2_ITERATIONS = 2;
     private static final int ARGON2_PARALLELISM = 1;
     private static final int ARGON2_SALT_LENGTH = 16;
     private static final int ARGON2_HASH_LENGTH = 32;
-
-    private static final String RECAPTCHA_SECRET_KEY = "6Lev9xorAAAAAP30vlscppRk2bC8M7GwUBag6Lsz";
-
 
     private final GetUserByUsernameUseCase getUserByUsernameUseCase;
     private final UserDetailsServiceImpl userDetailsService;
@@ -69,7 +72,7 @@ public class SecurityConfig {
 
     @Bean
     public CaptchaValidationFilter captchaValidationFilter() {
-        return new CaptchaValidationFilter(RECAPTCHA_SECRET_KEY);
+        return new CaptchaValidationFilter(recaptchaUrl, recaptchaSecretKey);
     }
 
     @Bean
@@ -87,9 +90,9 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder =
-                http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider());
-        return authenticationManagerBuilder.build();
+        return http
+                .getSharedObject(AuthenticationManagerBuilder.class)
+                .authenticationProvider(customAuthenticationProvider())
+                .build();
     }
 }

@@ -101,7 +101,8 @@
             <input type="password" id="password" name="password" required>
         </div>
 
-        <div class="g-recaptcha" data-sitekey="6Lev9xorAAAAANlwTx7qBRAe7I_snS9x3qqoXket"></div>
+        <div class="g-recaptcha" th:attr="data-sitekey=${captchaSiteKey}"></div>
+
         <div>
             <button type="submit">Ingresar</button>
         </div>

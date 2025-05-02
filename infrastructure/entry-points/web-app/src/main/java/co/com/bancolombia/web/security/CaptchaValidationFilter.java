@@ -4,6 +4,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,14 +16,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Map;
 
+@AllArgsConstructor
 public class CaptchaValidationFilter extends OncePerRequestFilter {
 
-    private static final String RECAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify";
+    private final String url;
     private final String secretKey;
-
-    public CaptchaValidationFilter(String secretKey) {
-        this.secretKey = secretKey;
-    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -47,7 +45,7 @@ public class CaptchaValidationFilter extends OncePerRequestFilter {
         String body = "secret=" + secretKey + "&response=" + responseToken;
         HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
 
-        ResponseEntity<Map> resp = restTemplate.exchange(RECAPTCHA_URL, HttpMethod.POST, requestEntity, Map.class);
+        ResponseEntity<Map> resp = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Map.class);
         return Boolean.TRUE.equals(resp.getBody().get("success"));
     }
 }
