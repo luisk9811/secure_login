@@ -20,11 +20,12 @@ public class UserRepositoryAdapter implements UserRepository {
         return new User(entity.getUsername(), entity.getPassword(), entity.isEnabled());
     }
 
-//    public void saveUser(User user) {
-//        UserEntity entity = new UserEntity();
-//        entity.setUsername(user.getUsername());
-//        entity.setPassword(user.getPassword());
-//        entity.setEnabled(user.isEnabled());
-//        jpaUserRepository.save(entity);
-//    }
+    @Override
+    public void saveUser(User user) {
+        UserEntity entity = new UserEntity();
+        entity.setUsername(user.getUsername());
+        entity.setPassword(user.getPassword());
+        entity.setEnabled(user.isEnabled());
+        jpaUserRepository.save(entity);
+    }
 }

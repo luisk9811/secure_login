@@ -4,4 +4,5 @@ import co.com.bancolombia.model.User;
 
 public interface UserRepository {
     User getByUsername(String username);
+    void saveUser(User user);
 }
