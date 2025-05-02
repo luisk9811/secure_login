@@ -10,7 +10,6 @@ public class RegisterUserUseCase {
     private final UserRepository userRepository;
 
     public void register(User user) {
-        user.setEnabled(true);
         userRepository.saveUser(user);
     }
 }

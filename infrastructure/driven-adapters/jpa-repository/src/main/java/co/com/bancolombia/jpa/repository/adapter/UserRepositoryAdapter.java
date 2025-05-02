@@ -1,6 +1,6 @@
 package co.com.bancolombia.jpa.repository.adapter;
 
-import co.com.bancolombia.jpa.Entity.UserEntity;
+import co.com.bancolombia.jpa.entity.UserEntity;
 import co.com.bancolombia.jpa.repository.JpaUserRepository;
 import co.com.bancolombia.model.User;
 import co.com.bancolombia.model.gateways.UserRepository;

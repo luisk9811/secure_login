@@ -1,4 +1,4 @@
-package co.com.bancolombia.jpa.Entity;
+package co.com.bancolombia.jpa.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

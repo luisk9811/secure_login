@@ -1,6 +1,6 @@
 package co.com.bancolombia.jpa.repository;
 
-import co.com.bancolombia.jpa.Entity.UserEntity;
+import co.com.bancolombia.jpa.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
