@@ -26,11 +26,11 @@ public class SecurityConfig {
     private static final int ARGON2_SALT_LENGTH = 16;
     private static final int ARGON2_HASH_LENGTH = 32;
 
-    private static final String RECAPTCHA_SECRET_KEY = "6Lev9xorAAAAAP30vlscppRk2bC8M7GwUBag6Lsz";  // Obtén este valor de Google reCAPTCHA
+    private static final String RECAPTCHA_SECRET_KEY = "6Lev9xorAAAAAP30vlscppRk2bC8M7GwUBag6Lsz";
 
 
     private final GetUserByUsernameUseCase getUserByUsernameUseCase;
-    private final UserDetailsServiceImpl userDetailsService;  // Esta es la referencia a tu UserDetailsService
+    private final UserDetailsServiceImpl userDetailsService;
     private final LoginAttemptService loginAttemptService;
 
     @Bean
@@ -48,9 +48,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, CaptchaValidationFilter captchaValidationFilter) throws Exception {
         http
 //                .csrf(csrf -> csrf.disable())
-                .addFilterBefore(captchaValidationFilter, UsernamePasswordAuthenticationFilter.class) // Use addFilterBefore
+                .addFilterBefore(captchaValidationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/hash", "/css/**", "/js/**", "/favicon.ico").permitAll()
+                        .requestMatchers("/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
